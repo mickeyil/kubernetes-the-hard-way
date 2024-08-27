@@ -15,7 +15,7 @@ This tutorial requires four (4) virtual or physical ARM64 machines running Debia
 
 How you provision the machines is up to you, the only requirement is that each machine meet the above system requirements including the machine specs and OS version. Once you have all four machine provisioned, verify the system requirements by running the `uname` command on each machine:
 
-```bash 
+```bash
 uname -mov
 ```
 
@@ -28,3 +28,29 @@ After running the `uname` command you should see the following output:
 You maybe surprised to see `aarch64` here, but that is the official name for the Arm Architecture 64-bit instruction set. You will often see `arm64` used by Apple, and the maintainers of the Linux kernel, when referring to support for `aarch64`. This tutorial will use `arm64` consistently throughout to avoid confusion.
 
 Next: [setting-up-the-jumpbox](02-jumpbox.md)
+
+# Setting up the VMs using Vagrant
+The following instructions were done on a x86_64 Ubuntu 22.04 machine.
+
+### Install Vagrant
+```bash
+sudo apt-get update
+sudo apt-get install -y vagrant virtualbox
+```
+
+The `Vagrantfile` is included in the root of this repository, and sets up the 4 machines.
+
+### Provision the VMs
+```bash
+vagrant up
+```
+
+### Create ssh config
+```bash
+vagrant ssh-config > vagrant-ssh-config
+```
+
+### Log into the jumpbox
+```bash
+ssh -F vagrant-ssh-config jumpbox
+```
