@@ -35,7 +35,7 @@ The following instructions were done on a x86_64 Ubuntu 22.04 machine.
 ### Install Vagrant
 ```bash
 sudo apt-get update
-sudo apt-get install -y vagrant virtualbox
+sudo apt-get install -y vagrant vagrant-libvirt virtualbox
 ```
 
 The `Vagrantfile` is included in the root of this repository, and sets up the 4 machines.

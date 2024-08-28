@@ -1,6 +1,12 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "debian/bookworm64"
+  config.vm.box = "generic/debian12"
+
+  config.vm.synced_folder ".", "/vagrant"
+
+  config.vbguest.auto_update = false if Vagrant.has_plugin?("vagrant-vbguest")
+
   vm_names = ["jumpbox", "server", "node-0", "node-1"]
+
   vm_names.each_with_index do |name, index|
     config.vm.define name do |node|
       node.vm.hostname = name
@@ -13,4 +19,5 @@ Vagrant.configure("2") do |config|
       end
     end
   end
+
 end
